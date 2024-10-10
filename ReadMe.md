@@ -22,3 +22,8 @@ ls -al - it will show all fines in the terminal.
 
 sudo kill 21366 21365
 ps aux | grep mongod
+
+## Front End
+
+1.` npm install` to install the package.json dependecies
+2. `npm start` to run the website at localhost:3000

@@ -1,8 +1,13 @@
 function App() {
   return (
     <div>
-      <header>Hello</header>
-      <body className="text-3xl"> how are you</body>
+      <header>
+        <h1
+          className="text-3xl font-bold underline"
+        >
+          Learn React
+        </h1>
+      </header>
     </div>
   );
 }
