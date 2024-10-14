@@ -1,6 +1,6 @@
-## API Information
+# API Information
 
-### User Management API
+## 1. User Management API
 This API allows you to manage user data, including retrieving users, adding new users, updating users, and deleting users.
 
 ### Base URL
@@ -190,6 +190,238 @@ Status: 404 Not Found
 }
 
 ```
+
+--- 
+
+## 2. Survey Management API
+This API allows you to manage survey data, including creating surveys, retrieving all surveys, updating existing surveys, deleting surveys, and saving survey answers.
+
+### Base URL
+```
+http://localhost:9000/surveys
+```
+---
+### Endpoints
+### 1. Get All Surveys
+#### Endpoint:
+`GET /surveys`
+
+**Description**:
+Fetch all surveys from the database.
+
+**Response**:
+```
+Status: 200 OK
+[
+  {
+    "_id": "615aef425a7a8906c0e5b789",
+    "nameofsurvey": "Health Assessment",
+    "assignedPatients": ["John Doe", "Jane Doe"],
+    "questions": [
+      { "questiontype": "Multiple Choice", "questiontext": "How are you feeling today?" },
+      { "questiontype": "Text", "questiontext": "Describe any symptoms." }
+    ],
+    "createdBy": "Dr. Smith",
+    "__v": 0
+  }
+]
+
+```
+**Error Response** :
+
+```
+Status: 500 Internal Server Error
+{
+  "message": "Server error",
+  "error": "Detailed error message here"
+}
+```
+---
+### 2. Create a New Survey
+### Endpoint:
+`POST /surveys`
+
+**Description**:
+Create a new survey.
+
+**Request Body**:
+```
+{
+  "nameofsurvey": "Health Assessment",
+  "assignedPatients": ["John Doe", "Jane Doe"],
+  "questions": [
+    { "questiontype": "Multiple Choice", "questiontext": "How are you feeling today?" },
+    { "questiontype": "Text", "questiontext": "Describe any symptoms." }
+  ],
+  "createdBy": "Dr. Smith"
+}
+```
+
+**Response**:
+
+```
+Status: 201 Created
+{
+  "message": "Survey created successfully",
+  "survey": {
+    "_id": "615aef425a7a8906c0e5b789",
+    "nameofsurvey": "Health Assessment",
+    "assignedPatients": ["John Doe", "Jane Doe"],
+    "questions": [
+      { "questiontype": "Multiple Choice", "questiontext": "How are you feeling today?" },
+      { "questiontype": "Text", "questiontext": "Describe any symptoms." }
+    ],
+    "createdBy": "Dr. Smith",
+    "__v": 0
+  }
+}
+
+```
+**Error Response**:
+```
+Status: 500 Internal Server Error
+{
+  "message": "Error creating survey",
+  "error": "Detailed error message here"
+}
+
+```
+---
+### 3. Update a Survey by ID
+
+**Endpoint**:
+`PATCH /surveys/:id`
+
+**Description**:
+Update an existing survey by its ID.
+
+**Parameters**:
+
+`:id` (required) - The ID of the survey.
+
+**Request Body (optional fields):**
+```
+{
+  "nameofsurvey": "Updated Health Assessment",
+  "assignedPatients": ["John Doe", "Jane Doe", "Jim Doe"],
+  "questions": [
+    { "questiontype": "Multiple Choice", "questiontext": "How are you feeling now?" }
+  ],
+  "createdBy": "Dr. Smith"
+}
+
+```
+**Response**:
+```
+Status: 200 OK
+{
+  "message": "Survey updated successfully",
+  "survey": {
+    "_id": "615aef425a7a8906c0e5b789",
+    "nameofsurvey": "Updated Health Assessment",
+    "assignedPatients": ["John Doe", "Jane Doe", "Jim Doe"],
+    "questions": [
+      { "questiontype": "Multiple Choice", "questiontext": "How are you feeling now?" }
+    ],
+    "createdBy": "Dr. Smith",
+    "__v": 0
+  }
+}
+```
+**Error Response**:
+```
+Status: 404 Not Found
+{
+  "message": "Survey not found"
+}
+```
+---
+### 4. Delete a Survey
+#### Endpoint:
+`DELETE /surveys/:id`
+
+**Description**:
+Delete a survey by its ID.
+
+**Parameters**:
+
+`:id` (required) - The ID of the survey.
+**Response**:
+```
+Status: 200 OK
+{
+  "message": "Survey deleted successfully"
+}
+```
+**Error Response**:
+```
+Status: 404 Not Found
+{
+  "message": "Survey not found"
+}
+
+```
+---
+### 5. Save Survey Answers
+**Endpoint**:
+`POST /surveys/:id/answers`
+
+**Description**:
+Save the answers for a particular survey by its ID.
+
+**Parameters**:
+
+`:id `(required) - The ID of the survey.
+**Request Body**:
+```
+Status: 200 OK
+{
+  "message": "Answers saved successfully",
+  "survey": {
+    "_id": "615aef425a7a8906c0e5b789",
+    "nameofsurvey": "Health Assessment",
+    "responses": [
+      {
+        "patientName": "John Doe",
+        "answers": [
+          { "questionId": "615aef425a7a8906c0e5b790", "answer": "I feel good." },
+          { "questionId": "615aef425a7a8906c0e5b791", "answer": "No symptoms." }
+        ]
+      }
+    ]
+  }
+}
+
+```
+**Response**:
+```
+Status: 200 OK
+{
+  "message": "Answers saved successfully",
+  "survey": {
+    "_id": "615aef425a7a8906c0e5b789",
+    "nameofsurvey": "Health Assessment",
+    "responses": [
+      {
+        "patientName": "John Doe",
+        "answers": [
+          { "questionId": "615aef425a7a8906c0e5b790", "answer": "I feel good." },
+          { "questionId": "615aef425a7a8906c0e5b791", "answer": "No symptoms." }
+        ]
+      }
+    ]
+  }
+}
+```
+**Error Response**:
+```
+Status: 500 Internal Server Error
+{
+  "message": "Error saving answers",
+  "error": "Detailed error message here"
+}
+
+```
 ---
 ### Error Handling
 If there are any server issues or invalid requests, the API will respond with a 500 status code and an error message:
@@ -202,7 +434,3 @@ Status: 500 Internal Server Error
   "error": "Detailed error message here"
 }
 ```
-
---- 
-
-
