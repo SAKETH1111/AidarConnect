@@ -1,5 +1,26 @@
 # API Information
+---
+## How to Run
+1. **Clone the repository**:
+  ```
+  git clone <repository-url>
+  cd <repository-folder>
+  ```
+2. **Run MongoDB**:
+  ```
+mongod
+```
+3. **Install dependencies**:
+  ```
+  npm install
+  ```
+4. **Start the application**:
+  ```
+  nodemon run start
+  ```
+5. **Test the API**: Use Postman or your preferred tool to test the endpoints listed below.
 
+--- 
 ## 1. User Management API
 This API allows you to manage user data, including retrieving users, adding new users, updating users, and deleting users.
 
