@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require('cors');
 const url = "mongodb://localhost/AidarDB";
 const app = express();
 
@@ -8,10 +9,16 @@ const con = mongoose.connection;
 con.on("open", () => {
   console.log("connected...");
 });
+app.use(cors({
+  origin: 'http://localhost:3000' // Replace with your frontend's origin
+}));
 app.use(express.json());
 
-const alienRouter = require("./routes/aliens");
-app.use("/aliens", alienRouter);
+const userRouter = require("./routes/users");
+app.use("/users", userRouter);
+
+const surveyRouter = require("./routes/surveys");
+app.use("/surveys", surveyRouter);
 
 app.listen(9000, () => {
   console.log("Server Started");
