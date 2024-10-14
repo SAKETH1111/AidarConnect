@@ -1,4 +1,4 @@
-## Aidar Connect
+## Aidar Connect Form Builder
 
 ---
 ## Backend API and Database Setup
@@ -69,7 +69,7 @@ In this project, we are building a backend using Node.js, Express, and MongoDB a
     nodemon run start
     ```
 4. **Postman for API Testing**:
-    Open Postman and use the defined endpoints to test the API.
+    Open Postman and use the [defined endpoints](https://github.com/SAKETH1111/AidarConnect/tree/main/CrudAPI#readme) to test the API.
 #### Common API Server Issues:
 - **Port Already in Use Error**:
 
@@ -85,7 +85,7 @@ In this project, we are building a backend using Node.js, Express, and MongoDB a
 
 ---
 #### Additional Notes
-- **API Endpoints**: The project has multiple CRUD endpoints to handle user and survey data. Use Postman or similar tools to send HTTP requests to these endpoints.
+- **[API Endpoints](https://github.com/SAKETH1111/AidarConnect/tree/main/CrudAPI#readme)**: The project has multiple CRUD endpoints to handle user and survey data. Use Postman or similar tools to send HTTP requests to these endpoints.
 - **Nodemon**: This tool ensures that your server restarts automatically upon any code changes, improving development efficiency.
 
 Feel free to contribute or raise issues if you encounter any difficulties with this project.
